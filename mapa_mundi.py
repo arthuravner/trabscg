@@ -15,8 +15,8 @@ def timer(i):
     glutTimerFunc(50,timer,1)
 
 def getPonto(i, j):
-    teta = ((i*math.pi)/nEsfera) - (math.pi/2)
-    phi = j*2*math.pi/nRotacao
+    teta = ((i*math.pi)/nEsfera) - (math.pi/r)
+    phi = j*r*math.pi/nRotacao
 
     x = r*math.cos(teta)*math.cos(phi)
     y = r*math.sin(teta)
@@ -27,15 +27,15 @@ def desenhaEsfera():
     glBegin(GL_QUAD_STRIP)
     for i in range(0,nEsfera):
         #glColor3fv(cores[i])
-        for j in range(0, nRotacao):  
-            glVertex3fv(getPonto(i,j))
+        for j in range(0, nRotacao):              
             glTexCoord2f(i/nEsfera, j/nRotacao)
-            glVertex3fv(getPonto(i+1,j))
+            glVertex3fv(getPonto(i,j))
             glTexCoord2f((i+1)/nEsfera, j/nRotacao)
-            glVertex3fv(getPonto(i,j+1))
+            glVertex3fv(getPonto(i+1,j))
             glTexCoord2f(i/nEsfera, (j+1)/nRotacao)
+            glVertex3fv(getPonto(i,j+1))
+            glTexCoord2f((i+1)/nEsfera, (j+1)/nRotacao)
             glVertex3fv(getPonto(i+1,j+1))
-            glTexCoord2f((i+1)/nEsfera, (j+1)/nRotacao) 
                    
     glEnd()
 
@@ -66,14 +66,14 @@ def LoadTextures():
 # PROGRAMA PRINCIPAL
 #cores = ( (1,0,0),(1,1,0),(0,1,0),(0,1,1),(0,0,1),(1,0,1),(0.5,1,1),(1,0,0.5) )
 
-nEsfera = 50 #i
-nRotacao = 50 #j
+nEsfera = 25 #i
+nRotacao = 25 #j
 r = 2
 
 glutInit(sys.argv)
 glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH | GLUT_MULTISAMPLE)
 glutInitWindowSize(800,600)
-glutCreateWindow("ESFERA")
+glutCreateWindow("Mapa Mundi")
 glutDisplayFunc(desenha)
 glEnable(GL_MULTISAMPLE)
 glEnable(GL_DEPTH_TEST)
@@ -90,7 +90,7 @@ gluPerspective(45,800.0/600.0,0.1,50.0)
 glMatrixMode(GL_MODELVIEW)
 
 glTranslatef(0.0,0.0,-8)
-glRotatef(45,1,1,1)
+glRotatef(1,1,1,1)
 glutTimerFunc(50,timer,1)
 LoadTextures()
 glEnable(GL_TEXTURE_2D)
