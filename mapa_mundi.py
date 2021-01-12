@@ -28,13 +28,13 @@ def desenhaEsfera():
     for i in range(0,nEsfera):
         #glColor3fv(cores[i])
         for j in range(0, nRotacao):              
-            glTexCoord2f(i/nEsfera, j/nRotacao)
+            glTexCoord2f(i/nEsfera, -j/nRotacao)
             glVertex3fv(getPonto(i,j))
-            glTexCoord2f((i+1)/nEsfera, j/nRotacao)
+            glTexCoord2f((i+1)/nEsfera, -j/nRotacao)
             glVertex3fv(getPonto(i+1,j))
-            glTexCoord2f(i/nEsfera, (j+1)/nRotacao)
+            glTexCoord2f(i/nEsfera, -(j+1)/nRotacao)
             glVertex3fv(getPonto(i,j+1))
-            glTexCoord2f((i+1)/nEsfera, (j+1)/nRotacao)
+            glTexCoord2f((i+1)/nEsfera, -(j+1)/nRotacao)
             glVertex3fv(getPonto(i+1,j+1))
                    
     glEnd()
@@ -44,7 +44,7 @@ def LoadTextures():
     texture = glGenTextures(1)
 
     glBindTexture(GL_TEXTURE_2D, texture)
-    reader = png.Reader(filename='mapa.png')
+    reader = png.Reader(filename='mapa2.png')
     w, h, pixels, metadata = reader.read_flat()
     if(metadata['alpha']):
         modo = GL_RGBA
