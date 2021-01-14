@@ -44,7 +44,7 @@ def LoadTextures():
     texture = glGenTextures(1)
 
     glBindTexture(GL_TEXTURE_2D, texture)
-    reader = png.Reader(filename='mapa_mundi.png')
+    reader = png.Reader(filename='mapa_analfabetismo.png')
     w, h, pixels, metadata = reader.read_flat()
     if(metadata['alpha']):
         modo = GL_RGBA
@@ -73,7 +73,7 @@ r = 2
 glutInit(sys.argv)
 glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH | GLUT_MULTISAMPLE)
 glutInitWindowSize(800,600)
-glutCreateWindow("Mapa Mundi")
+glutCreateWindow("Mapa Analfabetismo, dados de 2015")
 glutDisplayFunc(desenha)
 glEnable(GL_MULTISAMPLE)
 glEnable(GL_DEPTH_TEST)
